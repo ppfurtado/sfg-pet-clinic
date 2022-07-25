@@ -4,7 +4,7 @@
 
     <groupId>com.ppfurtado</groupId>
     <artifactId>sfg-pet-clinic</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <modules>
         <module>pet-clinic-data</module>
@@ -54,6 +54,7 @@
         <connection>scm:git:https://github.com/ppfurtado/sfg-pet-clinic.git</connection>
         <developerConnection>scm:git:https://github.com/ppfurtado/sfg-pet-clinic.git</developerConnection>
         <url>https://github.com/ppfurtado/sfg-pet-clinic</url>
-    </scm>
+      <tag>sfg-pet-clinic-0.0.1</tag>
+  </scm>
 
 </project>
