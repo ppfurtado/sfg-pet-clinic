@@ -1,11 +1,11 @@
 package com.ppfurtado.sfgpetclinic.service.map;
 
 import com.ppfurtado.sfgpetclinic.model.Vet;
-import com.ppfurtado.sfgpetclinic.service.CrudService;
+import com.ppfurtado.sfgpetclinic.service.VetService;
 
 import java.util.Set;
 
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
     @Override
     public Vet findById(Long id) {
