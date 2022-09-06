@@ -1,11 +1,11 @@
 package com.ppfurtado.sfgpetclinic.bootstrap;
 
 import com.ppfurtado.sfgpetclinic.model.Owner;
+import com.ppfurtado.sfgpetclinic.model.PetType;
 import com.ppfurtado.sfgpetclinic.model.Vet;
 import com.ppfurtado.sfgpetclinic.service.OwnerService;
+import com.ppfurtado.sfgpetclinic.service.PetTypeService;
 import com.ppfurtado.sfgpetclinic.service.VetService;
-import com.ppfurtado.sfgpetclinic.service.map.OwnerServiceMap;
-import com.ppfurtado.sfgpetclinic.service.map.VetServiceMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -14,14 +14,24 @@ public class DataLoad implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
-    public DataLoad(OwnerService ownerService, VetService vetService) {
+    public DataLoad(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+
+        PetType dog = new PetType();
+        dog.setName("Apollo");
+        PetType savedDogType = petTypeService.save(dog);
+
+        PetType cat = new PetType();
+        cat.setName("Kimia");
+        PetType savedCatType = petTypeService.save(cat);
 
         Owner owner_1 = new Owner();
         owner_1.setFirstName("Pedro Paulo");
