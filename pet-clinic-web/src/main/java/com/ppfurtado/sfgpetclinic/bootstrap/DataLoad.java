@@ -1,11 +1,9 @@
 package com.ppfurtado.sfgpetclinic.bootstrap;
 
-import com.ppfurtado.sfgpetclinic.model.Owner;
-import com.ppfurtado.sfgpetclinic.model.Pet;
-import com.ppfurtado.sfgpetclinic.model.PetType;
-import com.ppfurtado.sfgpetclinic.model.Vet;
+import com.ppfurtado.sfgpetclinic.model.*;
 import com.ppfurtado.sfgpetclinic.service.OwnerService;
 import com.ppfurtado.sfgpetclinic.service.PetTypeService;
+import com.ppfurtado.sfgpetclinic.service.SpecialtiesService;
 import com.ppfurtado.sfgpetclinic.service.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -18,16 +16,25 @@ public class DataLoad implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialtiesService specialtiesService;
 
-    public DataLoad(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataLoad(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtiesService specialtiesService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialtiesService = specialtiesService;
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args){
 
+        int count = petTypeService.findAll().size();
+        if (count == 0){
+            loadData();
+        }
+    }
+
+    private void loadData() {
         PetType dog = new PetType();
         dog.setName("dog");
         PetType savedDogType = petTypeService.save(dog);
@@ -35,6 +42,14 @@ public class DataLoad implements CommandLineRunner {
         PetType cat = new PetType();
         cat.setName("cat");
         PetType savedCatType = petTypeService.save(cat);
+
+        Speciality speciality_1 = new Speciality();
+        speciality_1.setDescription("veterinário dermatologista");
+        specialtiesService.save(speciality_1);
+
+        Speciality speciality_2 = new Speciality();
+        speciality_2.setDescription("veterinário Cirurgista de Mão");
+        specialtiesService.save(speciality_2);
 
         Owner owner_1 = new Owner();
         owner_1.setFirstName("Pedro Paulo");
@@ -73,14 +88,15 @@ public class DataLoad implements CommandLineRunner {
         Vet vet_1 = new Vet();
         vet_1.setFirstName("Lucas");
         vet_1.setLastName("Furtado");
+        vet_1.getSpecialities().add(speciality_2);
         vetService.save(vet_1);
 
         Vet vet_2 = new Vet();
         vet_2.setFirstName("Luiza");
         vet_2.setLastName("Furtado");
         vetService.save(vet_2);
+        vet_2.getSpecialities().add(speciality_2);
 
         System.out.println("Loaded Vets...");
-
     }
 }
