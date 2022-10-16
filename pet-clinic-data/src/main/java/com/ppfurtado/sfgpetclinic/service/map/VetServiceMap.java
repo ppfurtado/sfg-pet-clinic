@@ -2,7 +2,7 @@ package com.ppfurtado.sfgpetclinic.service.map;
 
 import com.ppfurtado.sfgpetclinic.model.Speciality;
 import com.ppfurtado.sfgpetclinic.model.Vet;
-import com.ppfurtado.sfgpetclinic.service.SpecialtiesService;
+import com.ppfurtado.sfgpetclinic.service.SpecialtyService;
 import com.ppfurtado.sfgpetclinic.service.VetService;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +11,9 @@ import java.util.Set;
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
-    private final SpecialtiesService specialtiesService;
+    private final SpecialtyService specialtiesService;
 
-    public VetServiceMap(SpecialtiesService specialtiesService) {
+    public VetServiceMap(SpecialtyService specialtiesService) {
         this.specialtiesService = specialtiesService;
     }
 

@@ -3,7 +3,7 @@ package com.ppfurtado.sfgpetclinic.bootstrap;
 import com.ppfurtado.sfgpetclinic.model.*;
 import com.ppfurtado.sfgpetclinic.service.OwnerService;
 import com.ppfurtado.sfgpetclinic.service.PetTypeService;
-import com.ppfurtado.sfgpetclinic.service.SpecialtiesService;
+import com.ppfurtado.sfgpetclinic.service.SpecialtyService;
 import com.ppfurtado.sfgpetclinic.service.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,9 +16,9 @@ public class DataLoad implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
-    private final SpecialtiesService specialtiesService;
+    private final SpecialtyService specialtiesService;
 
-    public DataLoad(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtiesService specialtiesService) {
+    public DataLoad(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtiesService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
