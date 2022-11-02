@@ -2,6 +2,8 @@ package com.ppfurtado.sfgpetclinic.service.springdatajpa;
 
 import com.ppfurtado.sfgpetclinic.model.Owner;
 import com.ppfurtado.sfgpetclinic.repositories.OwnerRepository;
+import com.ppfurtado.sfgpetclinic.repositories.PetRepository;
+import com.ppfurtado.sfgpetclinic.repositories.PetTypeRepository;
 import com.ppfurtado.sfgpetclinic.service.OwnerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -13,41 +15,46 @@ import java.util.Set;
 @Profile("springdatajpa")
 public class OwnerSDJpaService implements OwnerService {
 
-    private final OwnerRepository repository;
+    private final OwnerRepository ownerRepository;
+    private final PetRepository petRepository;
+    private final PetTypeRepository petTypeRepository;
 
-    public OwnerSDJpaService(OwnerRepository repository) {
-        this.repository = repository;
+    public OwnerSDJpaService(OwnerRepository ownerRepository, PetRepository petRepository, PetTypeRepository petTypeRepository) {
+        this.ownerRepository = ownerRepository;
+        this.petRepository = petRepository;
+        this.petTypeRepository = petTypeRepository;
+
     }
 
     @Override
     public Owner findById(Long id) {
-        return repository.findById(id).orElse(null);
+        return ownerRepository.findById(id).orElse(null);
     }
 
     @Override
     public Owner save(Owner object) {
-        return repository.save(object);
+        return ownerRepository.save(object);
     }
 
     @Override
     public Set<Owner> findAll() {
         Set<Owner> owners = new HashSet<>();
-        repository.findAll().iterator().forEachRemaining(owners::add);
+        ownerRepository.findAll().iterator().forEachRemaining(owners::add);
         return owners;
     }
 
     @Override
     public void delete(Owner object) {
-        repository.delete(object);
+        ownerRepository.delete(object);
     }
 
     @Override
     public void deleteById(Long id) {
-        repository.deleteById(id);
+        ownerRepository.deleteById(id);
     }
 
     @Override
     public Owner findByLastName(String lastName) {
-        return repository.findByLastName(lastName);
+        return ownerRepository.findByLastName(lastName);
     }
 }
